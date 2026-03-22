@@ -1,0 +1,34 @@
+[
+    {
+        "id": "youtube",
+        "title": "YouTube",
+        "url": "https://www.youtube.com",
+        "icon": "🎬",
+        "color": "#ff0000",
+        "size": "1280,720"
+    },
+    {
+        "id": "migu",
+        "title": "Migu Music",
+        "url": "https://music.migu.cn/v5/#/musicLibrary",
+        "icon": "🎵",
+        "color": "#10a37f",
+        "size": "1366,800"
+    },
+    {
+        "id": "yt_music",
+        "title": "YouTube Music",
+        "url": "https://music.youtube.com",
+        "icon": "🎵",
+        "color": "#10a37f",
+        "size": "1366,800"
+    },
+    {
+        "id": "monitor",
+        "title": "110网段",
+        "url": "http://192.168.110.1",
+        "icon": "📡",
+        "color": "#007bff",
+        "size": "1440,900"
+    }
+]

@@ -1,0 +1,11 @@
+[project]
+name = "window-laucher"
+version = "0.1.0"
+description = "基于H5的桌面全能控制台"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyinstaller>=6.19.0",
+    "python-dotenv>=1.2.2",
+    "pywebview>=6.1",
+]
