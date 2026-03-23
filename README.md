@@ -1,7 +1,7 @@
 # Project Name: Desktop Application Launcher
 
 ##  Description
-This application can quickly launch a Chrome web app, which can be isolated from the data used by the Chrome browser and can also isolate extension apps, facilitating the use of independent web apps.**
+This application can quickly launch a Chrome web app, which can be isolated from the data used by the Chrome browser and can also isolate extension apps, facilitating the use of independent web apps.
 
 
 ### **一、 技术栈选型**
