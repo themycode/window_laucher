@@ -49,12 +49,13 @@
       }
 
       .container {
-        /* 移除固定的 max-height 和 max-width */
-        width: 320px; /* 固定宽度，让内容向下延申 */
-        min-height: 100px;
-        max-height: 90vh; /* 最高不超过屏幕高度的 90% */
+        /* 自适应窗口宽度 */
+        width: 100%;
+        min-width: 240px;
+        height: auto;
+        max-height: 85vh; /* 最高不超过屏幕高度的 85% */
 
-        padding: 30px;
+        padding: 20px;
         background: var(--glass-bg);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
@@ -68,6 +69,7 @@
         flex-direction: column;
         overflow-y: auto;
         position: relative;
+        box-sizing: border-box;
       }
 
       /* 隐藏滚动条但保留功能（可选，让界面更干净） */
@@ -76,46 +78,68 @@
       }
 
       h2 {
-        font-weight: 300;
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin: 5px 0 20px 0;
         color: var(--text-color);
-        margin-bottom: 30px;
         letter-spacing: 1px;
       }
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        /* 自适应列数：最小 100px，根据容器宽度自动调整列数 */
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 12px;
+        width: 100%;
+        margin-top: 15px;
       }
 
       .app-card {
+        aspect-ratio: 1 / 1.15;
+        width: 100%;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
-        padding: 20px 10px;
+        padding: 12px 8px;
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         color: var(--text-color);
+        box-sizing: border-box;
       }
 
       .app-card:hover {
         background: rgba(255, 255, 255, 0.15);
-        transform: translateY(-5px);
+        transform: translateY(-3px);
         border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .app-card:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.2);
       }
 
       .icon {
-        font-size: 28px;
-        margin-bottom: 10px;
+        font-size: 2rem;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        line-height: 1;
       }
 
       .label {
-        font-size: 13px;
+        font-size: 11px;
         font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
         opacity: 0.9;
       }
 
@@ -178,6 +202,11 @@
     function renderApps(apps) {
       //   console.log('准备调用 Python 接口启动: ' + apps)
       const grid = document.getElementById('app-grid')
+      if (apps.length === 0) {
+        grid.innerHTML =
+          '<div style="color: rgba(255,255,255,0.5); grid-column: span 2; padding: 20px;">未找到相关应用</div>'
+        return
+      }
       grid.innerHTML = apps
         .map(
           (app) => `
@@ -198,6 +227,7 @@
       }, 100)
     }
 
+    // 刷新函数也要更新缓存
     async function handleRefresh() {
       // 1. 调用 Python 接口
       const response = await pywebview.api.refresh_config()
