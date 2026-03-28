@@ -22,7 +22,7 @@ params = [
     # 数据配置
     f"--add-data=apps.json{sep}.",
     # 环境配置
-    f"--add-data=.env{sep}.",
+    # f"--add-data=.env{sep}.",
     # 如果你有图标，取消下面注释
     "--icon=assets/app.ico",
     "--clean",
