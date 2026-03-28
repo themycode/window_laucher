@@ -92,9 +92,12 @@ class MyAppLogic:
         cmd = [
             self.chrome_path,
             f"--user-data-dir={self.user_data_base}",  # 使用统一目录
+            "--profile-directory=Default",  # 明确使用 Default 配置文件
             f"--app={app['url']}",
             f"--window-size={app.get('size', '1280,800')}",
             "--no-first-run",  # 优化启动体验
+            "--disk-cache-dir="
+            + os.path.join(self.user_data_base, "Cache"),  # 明确缓存目录
         ]
         subprocess.Popen(cmd)
         return True
